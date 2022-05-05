@@ -229,15 +229,24 @@ nav li.has-child ul ul li a:active{
     padding: 0;
     margin: 0;
     margin-top: 65px;
-    padding-bottom: 3cm;
-  }
+    padding-bottom: 5cm;
+    }
 
-  nav li a{
+  nav li a , nav ul ul li a {
     display: block;
     text-decoration: none;
     color: black;
-    padding:12.5px 35px;
+    padding:5px 35px;
     transition:all .3s;
+  }
+
+  nav ul li a {
+    border-bottom: solid 1px #999;
+  }
+
+  
+  nav ul li ul li p {
+    border-bottom: solid 1px #999;
   }
   
   nav ul{
@@ -270,7 +279,6 @@ nav li.has-child ul ul li a:active{
   transition:none;/*JSで制御するためCSSのアニメーションを切る*/
   background: none;
   text-align: left;
-  border-bottom: #999;
 }
 
 /*矢印の位置と向き*/
@@ -603,3 +611,16 @@ nav ul li.has-child.active::before{
     margin: 50px 0;
   }
 
+  .creater p img {
+    margin: 5px 15px;
+  }
+
+  .creater {
+    border: solid 1px gray;
+    margin: 20px;
+    background: linear-gradient(60deg, white 0%,white 75%,rgb(223, 245, 255) 75%,lightgreen 80%, rgb(26, 44, 107) 80%, rgb(11, 13, 19) 100%);
+  }
+
+  .creater .creater-main {
+    padding: 15px;
+  }
