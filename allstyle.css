@@ -1,0 +1,604 @@
+@charset "UTF-8";
+
+
+html {
+    font-size: 100%;
+    background-color: whitesmoke;
+    margin: 0;
+    scrollbar-width: thin;
+    scrollbar-color: gray lightgray;
+}
+
+body {
+  color: #1d1d1f;
+  margin: 0;
+}
+
+header ruby rt {
+  visibility: hidden;
+}
+
+h1 ruby rt {
+  text-align: justify;
+  font-size: 25px;
+}
+
+h1 {
+  font-size: 35px;
+}
+
+#uppercase {
+  text-transform: uppercase;
+}
+
+ul {
+  padding-inline-start: 0px;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  padding: 0;
+}
+a {
+  color: #3d3d3d;
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+}
+li {
+  list-style: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* header style */
+
+#header {
+  width: 100%;
+  background-color: white;
+  z-index: 10;
+  height: 65px;
+  top: 0;
+  text-align: left;
+}
+#header .header-inner {
+  height: 65px;
+  display: flex;
+  padding-right: 10%;
+  padding-left: 2.5%;
+  font-family: 10px;
+  margin-bottom: 30px;
+}
+
+#header .header-inner .logo {
+  flex-shrink: 0;
+  line-height: 1px;
+  width: 55px;
+  margin-right: 2cm;
+}
+
+#header {
+  width: 100%;
+}
+
+#drawer_input {
+  display: none;
+}
+
+/*==ナビゲーション全体の設定*/
+nav{
+  color:black;
+  text-align: left;
+  padding-top: 25px;
+}
+nav ul ul li {
+  padding: 10px 20px;
+}
+/*ナビゲーションを横並びに*/
+nav ul{
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+/*2階層目以降は横並びにしない*/
+nav ul ul{
+  display: block;
+}
+
+/*下の階層のulや矢印の基点にするためliにrelativeを指定*/
+nav ul li{
+  position: relative;
+  margin: 0 15px;
+  text-align: left;
+}
+
+/*ナビゲーションのリンク設定*/
+@media screen and (min-width: 768px) {
+  nav ul li a,nav ul li p{
+    width: 100%;
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    top: 30px;
+    margin:0 5% 0 5%;
+    transition:all .3s;
+    text-align: left;
+    top: 0;
+    margin: 0;
+  }
+}
+
+
+nav ul li a:hover{
+  color:black; 
+}
+
+/*==矢印の設定*/
+
+/*2階層目を持つliの矢印の設定*/
+nav ul li.has-child::before{
+  content:'';
+  position: absolute;
+  right:-10px;
+  top:7px;
+  width:6px;
+  height:6px;
+  border-top: 2px solid #999;
+    border-right:2px solid #999;
+    transform: rotate(135deg);
+}
+
+/*3階層目を持つliの矢印の設定*/
+nav ul ul li.has-child::before{
+  content:'';
+  position: absolute;
+  right:10px;
+  top:18px;
+  width:6px;
+  height:6px;
+    border-top: 2px solid rgb(72, 72, 72);
+    border-right:2px solid rgb(72, 72, 72);
+    transform: rotate(45deg);
+}
+
+/*== 2・3階層目の共通設定 */
+
+/*下の階層を持っているulの指定*/
+nav li.has-child ul{
+    /*絶対配置で位置を指定*/
+  position: absolute;
+  left:0;
+  top:50px;
+  z-index: 4;
+    /*形状を指定*/
+  background:white;
+    /*はじめは非表示*/
+  visibility: hidden;
+  opacity: 0;
+    /*アニメーション設定*/
+  transition: all .3s;
+}
+
+/*hoverしたら表示*/
+nav li.has-child:hover > ul,
+nav li.has-child ul li:hover > ul,
+nav li.has-child:active > ul,
+nav li.has-child ul li:active > ul{
+  visibility: visible;
+  opacity: 1;
+}
+
+/*ナビゲーションaタグの形状*/
+nav li.has-child ul li a{
+  color: black;
+  text-align: left;
+}
+
+nav li.has-child ul li:last-child a{
+  border-bottom:none;
+}
+
+nav li.has-child ul li a:hover,
+nav li.has-child ul li a:active{
+  background:whitesmoke;
+}
+
+/*==3階層目*/
+
+/*3階層目の位置*/
+nav li.has-child ul ul{
+  top:0;
+  left:115px;
+  background:white;
+  text-align: left; 
+}
+
+nav li.has-child ul ul li a:hover,
+nav li.has-child ul ul li a:active{
+  background:whitesmoke;
+}
+
+
+/*==768px以下の形状*/
+
+
+@media screen and (max-width:768px){
+  nav{
+    margin-top: 60px;
+    padding: 0;
+    margin: 0;
+    margin-top: 65px;
+  }
+
+  nav li a{
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding:12.5px 35px;
+    transition:all .3s;
+  }
+  
+  nav ul{
+    display: block;
+    color:black;
+    text-align: left;
+    margin-top: 50px;
+  }
+
+  nav li {
+    padding: 0;
+    margin: 0;
+  }
+
+  nav ul {
+    padding: 0;
+    margin: 0;
+    font-size: 10px;
+  }
+  
+  nav li.has-child ul,
+  nav li.has-child ul ul{
+    position: relative;
+  left:0;
+  top:0;
+  width:100%;
+  visibility:visible;/*JSで制御するため一旦表示*/
+  opacity:1;/*JSで制御するため一旦表示*/
+  display: block;/*JSのslidetoggleで表示させるため非表示に*/
+  transition:none;/*JSで制御するためCSSのアニメーションを切る*/
+  background: none;
+  text-align: left;
+  border-bottom: #999;
+}
+
+/*矢印の位置と向き*/
+
+nav ul li.has-child::before{
+  left:20px;  
+  border: none;
+}
+
+nav ul ul li.has-child::before{
+  border: none;
+  left:20px;
+}
+    
+nav ul li.has-child.active::before{
+    border: none;
+}
+
+}
+
+
+@media screen and (max-width: 768px) {
+  /*hamburger menu*/
+
+.drawer_open {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 20px;
+  z-index: 900;
+  cursor: pointer;
+}
+
+
+.drawer_open span,
+.drawer_open span:before,
+.drawer_open span:after {
+  content: '';
+  display: block;
+  height: 3px;
+  width: 25px;
+  border-radius: 3px;
+  background: #333;
+  transition: 0.1s;
+  position: absolute;
+}
+
+.hamburger {
+  margin-top: 40px;
+  padding-right: 20px;
+}
+
+/* 三本線の一番上の棒の位置調整 */
+.drawer_open span:before {
+  bottom: 8px;
+}
+
+/* 三本線の一番下の棒の位置調整 */
+.drawer_open span:after {
+  top: 8px;
+}
+
+/* アイコンがクリックされたら真ん中の線を透明にする */
+#drawer_input:checked ~ .drawer_open span {
+  background: rgba(255, 255, 255, 0);
+}
+
+/* アイコンがクリックされたらアイコンが×印になように上下の線を回転 */
+#drawer_input:checked ~ .drawer_open span::before {
+  bottom: 0;
+  transform: rotate(45deg);
+}
+
+#drawer_input:checked ~ .drawer_open span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+  
+/* メニューのデザイン*/
+.nav_content {
+  overflow-y: scroll;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 30px;
+  position: fixed;
+  left: 0;
+  top: 100%; /* メニューを画面の外に飛ばす */
+  z-index: 889;
+  background: rgba(255, 255, 255, 0.906);
+  transition: 0.5s;
+}
+
+/* メニュー黒ポチを消す */
+.nav_list {
+  list-style: none;
+}
+
+/* アイコンがクリックされたらメニューを表示 */
+#drawer_input:checked ~ .nav_content {
+  top: 0;/* メニューを画面に入れる */
+}
+  }
+
+  /*footer*/
+  #footer {
+    width: 100%;
+    color: #33333b;
+    font-size: 14px;
+    margin-top: 48px;
+  }
+  
+  #footer .text-area {
+    padding-top: 5px;
+    padding: 5px 25px;
+    margin-bottom: 2.5px;
+    font-size: 17.5px;
+    color: rgb(81, 81, 81);
+    width: 100%;
+    border-top: solid 2px #c4c4c4;
+    bottom: 10px;
+  }
+
+  .footer-bottom-menu {
+    float: right;
+    display: inline-flex;
+    padding-bottom: 10px;
+  }
+
+  .footer-bottom-menu li {
+    padding: 0 10px;
+    margin-top: 10px;
+  }
+
+  .language {
+    float: left;
+    display: inline-flex;
+    padding-top: 10px;
+  }
+
+
+  /*scrool bar*/
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+	
+  ::-webkit-scrollbar-track {
+      background-color: rgb(224, 247, 255);
+      border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(skyblue,lightskyblue);
+    box-shadow: inset 0 0 6px lightskyblue;
+    border-radius: 7.5px;
+  }
+
+  .language {
+    text-align: center;
+  }
+
+  #language {
+    margin: 2px 30px;
+  }
+
+  .topbar {
+    background-color: gray;
+    color: white;
+    padding: 10px;
+  }
+  
+  .news button::after{
+      content: '';
+      position: absolute;
+      top:42%;
+      right: 13px;
+      width: 5px;
+      height: 5px;
+      border-top: 2px solid #fff;
+      border-right: 2px solid #fff;
+      transform: rotate(45deg);
+      transition: all .3s;
+  }
+  
+  .news button:hover::after{
+      right: 5px;
+  }
+  
+
+.news button {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  background: rgb(130, 199, 222);
+  width: 130px;
+  height: 40px;
+  text-align: center;
+  line-height: 35px;
+  border: 2px solid rgb(6, 165, 218);
+  position: relative;
+  z-index: 1;
+  display: block;
+  overflow: hidden;
+  transition: .3s;
+  text-decoration: none;
+  display: inline-block;
+  outline: none;
+  transition: ease .2s;
+  cursor: pointer;
+}
+.news button::before {
+  content: "";
+  width: 120%;
+  height: 200%;
+  position: absolute;
+  top: -50%;
+  right: 0;
+  z-index: -1;
+  background: rgb(53, 180, 230);
+  border-radius: 0 100% 100% 0;
+  transform: translateX(-100%);
+  transition: transform ease .3s;
+}
+.news a:hover {
+  text-decoration: none;
+}
+.news button:hover {
+  border: 2px solid lightblue;
+}
+.news button:hover::before {
+  transform: translateX(10%);
+}
+
+  .news {
+    background: white;
+    padding: 10px;
+    width: 75%;
+    border-radius: 10px;
+    text-align: left;
+    padding: 25px;
+    box-shadow: 7px 7px 4px gray;
+    border: 1px solid gray;
+    margin: 5% 0;
+    cursor: default
+  }
+
+  .news a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .logbell_topimage {
+    background: linear-gradient(to top right,rgb(23, 167, 224),rgb(209, 232, 240));
+    padding: 10%;
+    padding-bottom: 5%;
+    font-size: 150%;
+    color: white;
+  }
+
+  .logbell_topimage img {
+    width: 12cm;
+  }
+
+  .lamif_topimage {
+    background: linear-gradient(to top right,rgb(26, 44, 107),rgb(11, 13, 19));
+    padding: 10%;
+    padding-bottom: 5%;
+    font-size: 150%;
+    color: white;
+  }
+
+  .lamif_topimage img {
+    width: 12cm;
+  }
+
+  .minibase_topimage {
+    background: linear-gradient(to top right,rgb(23, 134, 224),rgb(161, 218, 237));
+    padding: 5%;
+    padding-bottom: 2.5%;
+    font-size: 150%;
+    color: white;
+    top :0px;
+  }
+
+  @media screen and (min-width: 906px){
+    #main {
+      margin-left: 15%;
+      margin-right: 15%;
+    }
+    .minibase_topimage br { 
+      display: none;
+    }
+    }
+
+  @media screen and (max-width: 906px) {
+    #main {
+    margin-left: 5%;
+    }
+    footer .footer-bottom-menu {
+      display: block;
+      padding-right:10px;
+    }
+  }
+
+.pr .lb{
+    padding:7.5px;
+    font-size: 17.5px;
+    background:linear-gradient(30deg,lightblue,skyblue,lightskyblue);
+    color: white;
+    border: solid 2px lightcyan;
+  }
+
+  .pr .jyk {
+    padding:7.5px;
+    font-size: 17.5px;
+    background:linear-gradient(90deg,rgb(82, 255, 63),rgb(66, 128, 222));
+    color: white;
+    border: solid 2px lightcyan;
+  }
+  
+  .pr .lmf {
+    padding:7.5px;
+    font-size: 17.5px;
+    background:linear-gradient(to top right,rgb(26, 44, 107),rgb(11, 13, 19));
+    color: white;
+    border: solid 2px rgb(64, 0, 82);
+  }
+  #language {
+    font-size: 20px;
+    margin: 50px 0;
+  }
+
