@@ -1,0 +1,12 @@
+:lang(en) {
+    font-family: 'Noto Sans';
+}
+
+:lang(ja) {
+    font-family: 'Noto Sans','Noto Sans JP';
+    font-weight: 200;
+}
+
+:lang(ar) {
+    font-family: 'Noto Sans Arabic'
+}
